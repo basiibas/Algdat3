@@ -32,6 +32,7 @@ public class ObligSBinTre<T> implements Beholder<T>
         comp = c;
     }
 
+    //Oppgave 1
     @Override
     public boolean leggInn(T verdi)
     {
@@ -95,10 +96,36 @@ public class ObligSBinTre<T> implements Beholder<T>
         return antall;
     }
 
+
+    public void Comp(){
+
+    }
+    //Oppgave2
     public int antall(T verdi)
     {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        Node<T> p = rot; //reff node
+        int duplikater = 0;
+
+        while (p != null) // så lenge det finnes noder
+        {
+            int sam = comp.compare(verdi,p.verdi); //sammenligner verdi med p sin verdi
+            if (sam > 0) p = p.høyre;
+            else if(sam < 0) p=p.venstre;
+
+            else
+            {
+                if (sam == 0) duplikater++;
+                p = p.høyre;
+            }
+        }
+        return duplikater;
     }
+
+
+
+
+
+
 
     @Override
     public boolean tom()

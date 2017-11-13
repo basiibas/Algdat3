@@ -7,7 +7,7 @@ public class Oblig3Test
         int antallFeil = 0;
 
 //    OBS: Husk at ikke alle oppgavene er obligatoriske!
-//    antallFeil += oppgave1();
+//  antallFeil += oppgave1();
 //    antallFeil += oppgave2();
 //    antallFeil += oppgave3();
 //    antallFeil += oppgave4();
