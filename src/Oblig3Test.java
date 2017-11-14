@@ -7,10 +7,10 @@ public class Oblig3Test
         int antallFeil = 0;
 
 //    OBS: Husk at ikke alle oppgavene er obligatoriske!
-//  antallFeil += oppgave1();
-//    antallFeil += oppgave2();
-//    antallFeil += oppgave3();
-//    antallFeil += oppgave4();
+  antallFeil += oppgave1();
+    antallFeil += oppgave2();
+    antallFeil += oppgave3();
+//   antallFeil += oppgave4();
 //    antallFeil += oppgave5();
 //    antallFeil += oppgave6();
 //    antallFeil += oppgave7();
@@ -155,6 +155,7 @@ public class Oblig3Test
         try
         {
             s = tre.toString();
+            System.out.println("AYAYAYAYAY: " + s);
             if (!s.equals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]"))
             {
                 antallFeil++;
