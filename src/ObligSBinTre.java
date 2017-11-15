@@ -198,12 +198,23 @@ public class ObligSBinTre<T> implements Beholder<T>
 
     public String bladnodeverdier()
     {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        StringJoiner sj = new StringJoiner(", ", "[", "]");
+        Node<T> p = rot;
+        while(p.venstre != null){
+            p = p.venstre;
+        }
+        for(int i = 0; i < antall; i++){
+            if((p.venstre == null) && (p.høyre == null)){
+                sj.add(p.toString());
+            }
+            p = nesteInorden(p);
+        }
+        return sj.toString();
     }
 
     public String postString()
     {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        
     }
 
     @Override
