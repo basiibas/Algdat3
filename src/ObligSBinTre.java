@@ -79,10 +79,51 @@ public class ObligSBinTre<T> implements Beholder<T>
         return false;
     }
 
+    /**
+     * Følgende kode er kopiert & modifisert fra;
+     * http://webcache.googleusercontent.com/search?q=cache:http://www.iu.hio.no/~ulfu/appolonius/kap5/2/kap52.html&gws_rd=cr&dcr=0&ei=13wNWozqO9LHsAfEoITwAw
+     * Programkode 5.2.8 d)
+     */
     @Override
-    public boolean fjern(T verdi)
+    public boolean fjern(T verdi)  // hører til klassen SBinTre
     {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        if (verdi == null) return false;  // treet har ingen nullverdier
+
+        Node<T> p = rot, q = null;   // q skal være forelder til p
+
+        while (p != null)            // leter etter verdi
+        {
+            int cmp = comp.compare(verdi,p.verdi);      // sammenligner
+            if (cmp < 0) { q = p; p = p.venstre; }      // går til venstre
+            else if (cmp > 0) { q = p; p = p.høyre; }   // går til høyre
+            else break;    // den søkte verdien ligger i p
+        }
+        if (p == null) return false;   // finner ikke verdi
+
+        if (p.venstre == null || p.høyre == null)  // Tilfelle 1) og 2)
+        {
+            Node<T> b = p.venstre != null ? p.venstre : p.høyre;  // b for barn
+            if (p == rot) rot = b;
+            else if (p == q.venstre) q.venstre = b;
+            else q.høyre = b;
+        }
+        else  // Tilfelle 3)
+        {
+            Node<T> s = p, r = p.høyre;   // finner neste i inorden
+            while (r.venstre != null)
+            {
+                s = r;    // s er forelder til r
+                r = r.venstre;
+            }
+
+            p.verdi = r.verdi;   // kopierer verdien i r til p
+
+            if (s != p) s.venstre = r.høyre;
+            else s.høyre = r.høyre;
+        }
+
+        antall--;   // det er nå én node mindre i treet
+        return true;
     }
 
     public int fjernAlle(T verdi)
@@ -120,12 +161,6 @@ public class ObligSBinTre<T> implements Beholder<T>
         }
         return duplikater;
     }
-
-
-
-
-
-
 
     @Override
     public boolean tom()
@@ -170,6 +205,7 @@ public class ObligSBinTre<T> implements Beholder<T>
         }
         StringJoiner sj = new StringJoiner(", ", "[", "]");
         for(int i = 0; i < antall; i++) {
+            System.out.println(p.toString());
             sj.add(p.toString());
             p = nesteInorden(p);
         }
@@ -214,7 +250,7 @@ public class ObligSBinTre<T> implements Beholder<T>
 
     public String postString()
     {
-        
+        throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     @Override
