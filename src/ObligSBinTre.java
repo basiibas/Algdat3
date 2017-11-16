@@ -90,8 +90,14 @@ public class ObligSBinTre<T> implements Beholder<T>
         while (p != null)            // leter etter verdi
         {
             int cmp = comp.compare(verdi,p.verdi);      // sammenligner
-            if (cmp < 0) { q = p; p = p.venstre; }      // går til venstre
-            else if (cmp > 0) { q = p; p = p.høyre; }   // går til høyre
+            if (cmp < 0){
+                q = p;
+                p = p.venstre;
+            }// går til venstre
+            else if (cmp > 0) {
+                q = p;
+                p = p.høyre;
+            }   // går til høyre
             else break;    // den søkte verdien ligger i p
         }
         if (p == null) return false;   // finner ikke verdi
