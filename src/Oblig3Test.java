@@ -7,11 +7,11 @@ public class Oblig3Test
         int antallFeil = 0;
 
 //    OBS: Husk at ikke alle oppgavene er obligatoriske!
-  antallFeil += oppgave1();
-    antallFeil += oppgave2();
-    antallFeil += oppgave3();
+ // antallFeil += oppgave1();
+   // antallFeil += oppgave2();
+   // antallFeil += oppgave3();
 //   antallFeil += oppgave4();
-//    antallFeil += oppgave5();
+    antallFeil += oppgave5();
 //    antallFeil += oppgave6();
 //    antallFeil += oppgave7();
  //   antallFeil += oppgave8();
@@ -425,6 +425,7 @@ public class Oblig3Test
         }
         catch (Exception e)
         {
+            System.out.println(e.getClass());
             antallFeil++;
             System.out.println
                     ("Oppgave 5s: Kaster unntak i fjernAlle(T) for tre med en verdi!");
