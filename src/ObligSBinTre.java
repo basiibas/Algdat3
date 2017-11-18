@@ -303,84 +303,60 @@ public class ObligSBinTre<T> implements Beholder<T>
         return sj.toString();
     }
 
-    public String postString()
-    {
-        StringJoiner sj = new StringJoiner(", ", "[", "]");
-        Node<T> p = rot;
+    public String postString(){
         if(antall == 0){
-            return null;
+            return "[]";
         }
 
+        StringJoiner sj = new StringJoiner(", ", "[", "]");
+        Node<T> p = rot;
         while(p.venstre != null || p.høyre != null) {
             if(p.venstre == null){
                 p = p.høyre;
+            } else {
+                p = p.venstre;
             }
-            p = p.venstre;
-        }
-        sj.add(p.toString());
-        boolean whileLoop = true;
-        while(whileLoop){
-            p = nesteInorden(p);
-            if(p==null){
-                whileLoop = false;
-            } else{
-                sj.add(p.toString());
-                System.out.println("Ferdig med whileLoop på node : " + p.toString());
-            }
+        } sj.add(p.toString());
 
+        while(true) {
+            if(nestePostorden(p) == null){
+                break;
+            }
+            p = nestePostorden(p);
+            sj.add(p.toString());
         }
+
         return sj.toString();
     }
 
-    public Node<T> nestePostorden(Node<T> denne)
-    {
-        /*
-        if(p.forelder == null){     //returnerer null dersom p er rotnoden (siste node i inorden)
+    public Node<T> nestePostorden(Node<T> p){
+        if(p == rot){
             return null;
         }
 
-        if(p == p.forelder.høyre){
+        if(p.forelder.høyre == p){
             return p.forelder;
-        } else if(p == p.forelder.venstre) {
+        }
+
+        if(p.forelder.venstre == p) {
             p = p.forelder;
+
             if(p.høyre != null){
                 p = p.høyre;
                 while(p.venstre != null || p.høyre != null) {
                     if(p.venstre == null){
                         p = p.høyre;
+                    } else {
+                        p = p.venstre;
                     }
-                    p = p.venstre;
                 }
             }
             return p;
         }
-        return null;*/
 
-        if(denne == rot) {
-            return null;
-        }
-
-        if(denne.forelder.venstre == denne)  {
-            denne = denne.forelder;
-            if(denne.høyre == null) {
-                return denne;
-            } else {
-              denne = denne.høyre;
-              while (denne.venstre != null || denne.høyre != null) {
-                while (denne.venstre != null) {
-                    denne = denne.venstre;
-                }
-                if (denne.høyre != null) {
-                    denne = denne.høyre;
-                }
-            }
-            return denne;
-        }
-        } else {
-            return denne.forelder;
-        }
+        return null;
     }
-
+    
     @Override
     public Iterator<T> iterator()
     {

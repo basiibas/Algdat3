@@ -755,7 +755,6 @@ antallFeil += oppgave8();
             System.out.println
                     ("Oppgave 8bb: Feil - du har " + poststring + ", det skal være [10].");
         }
-
         tre.leggInn(15);
         poststring = tre.postString();
         if (poststring.compareTo("[15, 10]") != 0)
