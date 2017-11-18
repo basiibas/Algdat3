@@ -307,6 +307,9 @@ public class ObligSBinTre<T> implements Beholder<T>
     {
         StringJoiner sj = new StringJoiner(", ", "[", "]");
         Node<T> p = rot;
+        if(antall == 0){
+            return null;
+        }
 
         while(p.venstre != null || p.høyre != null) {
             if(p.venstre == null){
